@@ -30,11 +30,12 @@ class CookBook
 
   def summary
     summary = []
-    indiv_recipe = Hash.new { |hash, key| hash[key] = {:name => nil, :details => {} } }
+    indiv_recipe = Hash.new { |hash, key| hash[key] = {:name => nil, :details => {ingredients: [], total_calories: 0 } } }
 
     @recipes.each do |recipe|
       indiv_recipe[:name] = recipe.name
-      indiv_recipe[:details] = Hash.new { |hash, key| hash[key] = {ingredients: [recipe.ingredients_required], total_calories: recipe.total_calories }}
+      indiv_recipe[:details][:ingredients] << recipe.ingredients_required
+      indiv_recipe[:details][:total_calories] = recipe.total_calories
       summary << indiv_recipe
       indiv_recipe = {}
     end
