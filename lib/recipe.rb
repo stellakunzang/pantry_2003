@@ -5,7 +5,15 @@ class Recipe
 
   def initialize(name)
     @name = name
-    @ingredients_required = Hash.new 
+    @ingredients_required = Hash.new { |hash, key| hash[key] = 0 }
+  end
+
+  def add_ingredient(item, count)
+    @ingredients_required[item] += count
+  end
+
+  def ingredients
+
   end
 
 end
