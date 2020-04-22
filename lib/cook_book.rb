@@ -1,9 +1,13 @@
+require "Date"
+
 class CookBook
 
-  attr_reader :recipes
+  attr_reader :recipes,
+              :date 
 
   def initialize
     @recipes = []
+    @date = Date.today.strftime("%m-%d-%Y").to_s
   end
 
   def add_recipe(recipe)
@@ -21,7 +25,7 @@ class CookBook
   def highest_calorie_meal
     @recipes.max_by do |recipe|
       recipe.total_calories
-    end 
+    end
   end
 
 end
